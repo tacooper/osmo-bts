@@ -21,11 +21,12 @@
 
 #include <osmocom/core/talloc.h>
 #include <osmocom/core/utils.h>
-
+/*
 #include <sysmocom/femtobts/gsml1prim.h>
 #include <sysmocom/femtobts/gsml1const.h>
 #include <sysmocom/femtobts/gsml1types.h>
-
+*/
+#include "gsmL1prim.h"
 #include <osmo-bts/gsm_data.h>
 #include <osmo-bts/logging.h>
 #include <osmo-bts/oml.h>
@@ -610,8 +611,9 @@ int lchan_activate(struct gsm_lchan *lchan)
 			break;
 		}
 
-		LOGP(DL1C, LOGL_INFO, "%s MPH-ACTIVATE.req (hL2=0x%08x, SAPI=%d)\n",
-			gsm_lchan_name(lchan), act_req->hLayer2, i);
+		LOGP(DL1C, LOGL_INFO, "%s MPH-ACTIVATE.req (hL2=0x%08x, SAPI=%d %s)\n",
+			gsm_lchan_name(lchan), act_req->hLayer2, i,
+			get_value_string(femtobts_l1sapi_names, act_req->sapi));
 
 		/* send the primitive for all GsmL1_Sapi_* that match the LCHAN */
 		l1if_req_compl(fl1h, msg, 0, lchan_act_compl_cb, lchan);

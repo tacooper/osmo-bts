@@ -19,10 +19,12 @@
  *
  */
 
+/*
 #include <sysmocom/femtobts/femtobts.h>
 #include <sysmocom/femtobts/gsml1const.h>
 #include <sysmocom/femtobts/gsml1dbg.h>
-
+*/
+#include "gsmL1prim.h"
 #include "femtobts.h"
 
 const enum l1prim_type femtobts_l1prim_type[GsmL1_PrimId_NUM] = {
@@ -80,7 +82,7 @@ const struct value_string femtobts_l1prim_names[GsmL1_PrimId_NUM+1] = {
 	{ 0, NULL }
 };
 
-const GsmL1_PrimId_t femtobts_l1prim_req2conf[GsmL1_PrimId_NUM] = {
+const enum GsmL1_PrimId_t femtobts_l1prim_req2conf[GsmL1_PrimId_NUM] = {
 	[GsmL1_PrimId_MphInitReq]	= GsmL1_PrimId_MphInitCnf,
 	[GsmL1_PrimId_MphCloseReq]	= GsmL1_PrimId_MphCloseCnf,
 	[GsmL1_PrimId_MphConnectReq]	= GsmL1_PrimId_MphConnectCnf,
@@ -126,7 +128,7 @@ const struct value_string femtobts_sysprim_names[FemtoBts_PrimId_NUM+1] = {
 	{ 0, NULL }
 };
 
-const FemtoBts_PrimId_t femtobts_sysprim_req2conf[FemtoBts_PrimId_NUM] = {
+const enum FemtoBts_PrimId_t femtobts_sysprim_req2conf[FemtoBts_PrimId_NUM] = {
 	[FemtoBts_PrimId_SystemInfoReq]	= FemtoBts_PrimId_SystemInfoCnf,
 	[FemtoBts_PrimId_ActivateRfReq]	= FemtoBts_PrimId_ActivateRfCnf,
 	[FemtoBts_PrimId_DeactivateRfReq] = FemtoBts_PrimId_DeactivateRfCnf,

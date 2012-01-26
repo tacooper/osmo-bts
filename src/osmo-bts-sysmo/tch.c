@@ -39,12 +39,13 @@
 #include <osmo-bts/bts.h>
 #include <osmo-bts/gsm_data.h>
 #include <osmo-bts/measurement.h>
-
+/*
 #include <sysmocom/femtobts/femtobts.h>
 #include <sysmocom/femtobts/gsml1prim.h>
 #include <sysmocom/femtobts/gsml1const.h>
 #include <sysmocom/femtobts/gsml1types.h>
-
+*/
+#include "gsmL1prim.h"
 #include "femtobts.h"
 #include "l1_if.h"
 

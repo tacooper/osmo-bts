@@ -35,12 +35,13 @@
 
 #include <osmo-bts/logging.h>
 #include <osmo-bts/gsm_data.h>
-
+/*
 #include <sysmocom/femtobts/femtobts.h>
 #include <sysmocom/femtobts/gsml1prim.h>
 #include <sysmocom/femtobts/gsml1const.h>
 #include <sysmocom/femtobts/gsml1types.h>
-
+*/
+#include "gsmL1prim.h"
 #include "femtobts.h"
 #include "l1_if.h"
 #include "l1_transp.h"
@@ -115,8 +116,8 @@ int l1if_transport_open(struct femtol1_hdl *hdl)
 
 		rc = open(rd_devnames[i], O_RDONLY);
 		if (rc < 0) {
-			LOGP(DL1C, LOGL_FATAL, "unable to open msg_queue: %s\n",
-				strerror(errno));
+			LOGP(DL1C, LOGL_FATAL, "unable to open msg_queue %s: %s\n",
+				rd_devnames[i], strerror(errno));
 			goto out_free;
 		}
 		ofd->fd = rc;
@@ -137,8 +138,8 @@ int l1if_transport_open(struct femtol1_hdl *hdl)
 
 		rc = open(wr_devnames[i], O_WRONLY);
 		if (rc < 0) {
-			LOGP(DL1C, LOGL_FATAL, "unable to open msg_queue: %s\n",
-				strerror(errno));
+			LOGP(DL1C, LOGL_FATAL, "unable to open msg_queue %s: %s\n",
+				rd_devnames[i], strerror(errno));
 			goto out_read;
 		}
 
