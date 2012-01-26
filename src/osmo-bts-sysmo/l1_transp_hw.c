@@ -71,7 +71,11 @@ static int l1if_fd_cb(struct osmo_fd *ofd, unsigned int what)
 	int rc;
 
 	msg->l1h = msg->data;
-	rc = read(ofd->fd, msg->l1h, sizeof(GsmL1_Prim_t));
+	if(ofd->priv_nr == MQ_L1_WRITE)
+		rc = read(ofd->fd, msg->l1h, sizeof(GsmL1_Prim_t));
+	else
+		rc = read(ofd->fd, msg->l1h, sizeof(FemtoBts_Prim_t));
+
 	if (rc < 0) {
 		if (rc != -1) 
 			LOGP(DL1C, LOGL_ERROR, "error reading from L1 msg_queue: %s\n",
