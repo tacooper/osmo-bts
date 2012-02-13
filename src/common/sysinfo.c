@@ -38,10 +38,10 @@ uint8_t *bts_sysinfo_get(struct gsm_bts *bts, struct gsm_time *g_time)
 		return GSM_BTS_SI(bts, SYSINFO_TYPE_4);
 	case 4:
 		/* 2ter, 2quater, 9, 13 */
-		break;
+		return GSM_BTS_SI(bts, SYSINFO_TYPE_1);
 	case 5:
 		/* 2ter, 2quater */
-		break;
+		return GSM_BTS_SI(bts, SYSINFO_TYPE_2);
 	case 6:
 		return GSM_BTS_SI(bts, SYSINFO_TYPE_3);
 	case 7:
