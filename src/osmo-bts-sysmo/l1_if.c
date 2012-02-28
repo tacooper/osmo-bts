@@ -282,6 +282,11 @@ static int handle_ph_readytosend_ind(struct femtol1_hdl *fl1,
 			if (!resp_msg)
 				break;
 		}
+		else
+		{
+			LOGP(DL1C, LOGL_NOTICE, "%s DL TCH Tx msg from queue!\n",
+				gsm_lchan_name(lchan));
+		}
 
 		/* fill header */
 		data_req_from_rts_ind(msgb_l1prim(resp_msg), rts_ind);

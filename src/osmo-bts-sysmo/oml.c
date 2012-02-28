@@ -502,7 +502,12 @@ static void lchan2lch_par(GsmL1_LogChParam_t *lch_par, struct gsm_lchan *lchan)
 		clear_amr_params(lch_par);
 		break;
 	case GSM48_CMODE_SPEECH_EFR:
+#ifdef GsmL1_TchPlType_Efr
 		lch_par->tch.tchPlType = GsmL1_TchPlType_Efr;
+#else
+#warning No EFR support in L1
+		lch_par->tch.tchPlType = GsmL1_TchPlType_Fr;
+#endif
 		clear_amr_params(lch_par);
 		break;
 	case GSM48_CMODE_SPEECH_AMR:
