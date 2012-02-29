@@ -428,16 +428,14 @@ void bts_model_rtp_rx_cb(struct osmo_rtp_socket *rs, const uint8_t *rtp_pl,
 						 rtp_pl, rtp_pl_len);
 		}
 		break;
-	case GSM48_CMODE_SPEECH_EFR:
 #ifdef GsmL1_TchPlType_Efr
+	case GSM48_CMODE_SPEECH_EFR:
 		*payload_type = GsmL1_TchPlType_Efr;
 		rc = FIXME;
+		break;
 #else
 #warning No EFR support in L1
-		*payload_type = GsmL1_TchPlType_Fr;
-		rc = rtppayload_to_l1_fr(l1_payload, rtp_pl, rtp_pl_len);
 #endif
-		break;
 	case GSM48_CMODE_SPEECH_AMR:
 		*payload_type = GsmL1_TchPlType_Amr;
 		rc = rtppayload_to_l1_amr(l1_payload, rtp_pl,
@@ -505,6 +503,8 @@ int l1if_tch_rx(struct gsm_lchan *lchan, struct msgb *l1p_msg)
 	case GsmL1_TchPlType_Fr:
 #ifdef GsmL1_TchPlType_Efr
 	case GsmL1_TchPlType_Efr:
+#else
+#warning No EFR support in L1
 #endif
 		if (lchan->type != GSM_LCHAN_TCH_F)
 			goto err_payload_match;
@@ -535,14 +535,13 @@ int l1if_tch_rx(struct gsm_lchan *lchan, struct msgb *l1p_msg)
 	case GsmL1_TchPlType_Hr:
 		rmsg = l1_to_rtppayload_hr(payload, payload_len);
 		break;
-	case GsmL1_TchPlType_Efr:
 #ifdef GsmL1_TchPlType_Efr
+	case GsmL1_TchPlType_Efr:
 		rmsg = l1_to_rtppayload_efr(payload, payload_len);
+		break;
 #else
 #warning No EFR support in L1
-		rmsg = l1_to_rtppayload_fr(payload, payload_len);
 #endif
-		break;
 	case GsmL1_TchPlType_Amr:
 		rmsg = l1_to_rtppayload_amr(payload, payload_len,
 					    &lchan->tch.amr_mr);
