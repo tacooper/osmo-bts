@@ -281,10 +281,11 @@ static int trx_init(struct gsm_bts_trx *trx)
 	dev_par->u16Arfcn = trx->arfcn;
 	dev_par->u16BcchArfcn = trx->bts->c0->arfcn;
 	dev_par->u8NbTsc = trx->bts->bsic & 7;
+	dev_par->u8Ncc = (trx->bts->bsic & 56) >> 3;
 	dev_par->fRxPowerLevel = -75.f;
 	dev_par->fTxPowerLevel = trx->nominal_power - trx->max_power_red;
-	LOGP(DL1C, LOGL_NOTICE, "Init TRX (ARFCN %u, TSC %u, RxPower % 2f dBm, "
-		"TxPower % 2.2f dBm\n", dev_par->u16Arfcn, dev_par->u8NbTsc,
+	LOGP(DL1C, LOGL_NOTICE, "Init TRX (ARFCN %u, TSC %u, NCC %u, RxPower % 2f dBm, "
+		"TxPower % 2.2f dBm\n", dev_par->u16Arfcn, dev_par->u8NbTsc, dev_par->u8Ncc,
 		dev_par->fRxPowerLevel, dev_par->fTxPowerLevel);
 	
 	/* send MPH-INIT-REQ, wait for MPH-INIT-CNF */

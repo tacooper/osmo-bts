@@ -153,6 +153,7 @@ typedef struct GsmL1_DeviceParam_t {
 	uint16_t u16Arfcn;
 	uint16_t u16BcchArfcn;
 	uint8_t u8NbTsc;
+	uint8_t u8Ncc;
 	float fRxPowerLevel;
 	float fTxPowerLevel;
 } GsmL1_DeviceParam_t;
