@@ -1,6 +1,7 @@
 /* Interface handler for Sysmocom L1 (real hardware) */
 
 /* (C) 2011 by Harald Welte <laforge@gnumonks.org>
+ * Copyright 2012 Thomas Cooper <tacooper@vt.edu>
  *
  * All Rights Reserved
  *
